@@ -88,7 +88,7 @@ impl DefaultMenu {
     }
 
     // TODO make these configurable?
-    fn selected_style(&self, out: &mut Out) -> crossterm::Result<()> {
+    fn selected_style(&self, out: &mut Out) -> anyhow::Result<()> {
         execute!(
             out,
             SetBackgroundColor(Color::White),
@@ -97,12 +97,12 @@ impl DefaultMenu {
         Ok(())
     }
 
-    fn unselected_style(&self, out: &mut Out) -> crossterm::Result<()> {
+    fn unselected_style(&self, out: &mut Out) -> anyhow::Result<()> {
         execute!(out, ResetColor)?;
         Ok(())
     }
 
-    fn comment_style(&self, out: &mut Out) -> crossterm::Result<()> {
+    fn comment_style(&self, out: &mut Out) -> anyhow::Result<()> {
         execute!(out, SetForegroundColor(Color::Yellow),)?;
         Ok(())
     }

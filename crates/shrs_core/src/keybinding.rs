@@ -67,6 +67,21 @@ impl Keybindings {
         Ok(())
     }
 
+    pub fn insert_keycode<I, K: Keybinding + 'static>(
+        &mut self,
+        code: impl Into<KeyCode>,
+        info: &str,
+        binding: impl IntoKeybinding<I, Keybinding = K>,
+    ) -> Result<()> {
+        let mods = KeyModifiers::NONE;
+        let code = code.into();
+        let key_event = KeyEvent::new(code, mods);
+        self.bindings
+            .insert(key_event, Box::new(binding.into_keybinding()));
+        self.info.insert(code.to_string(), info.to_string());
+        Ok(())
+    }
+
     /// Attempt to evaluate any registered keybindings
     ///
     /// Return true indicates that some event was handled.

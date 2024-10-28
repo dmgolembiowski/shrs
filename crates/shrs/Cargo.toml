@@ -16,7 +16,7 @@ default = ["serde"]
 serde = ["dep:serde", "shrs_core/serde"]
 
 [dependencies]
-crossterm = {version = "0.26", features = ["bracketed-paste"]}
+crossterm = {version = "0.28", features = ["bracketed-paste"]}
 regex = "1"
 signal-hook = "0.3"
 clap = { version = "4.1", features = ["derive"] }
